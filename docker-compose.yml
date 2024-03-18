@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  changeme:
+    build: .
+    command: |
+      sh -c "pnpm run dev"
+    volumes:
+      - ./app:/opt/app
+      - node_volume:/opt/app/node_modules
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=True
+      - BROWSER=None
+    ports:
+      - 3000:3000
+
+  mock-server:
+    image: clue/json-server
+    volumes:
+      - ./mock/db.json:/data/db.json
+    ports:
+      - 5000:80
+
+volumes:
+  node_volume: {}
