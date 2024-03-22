@@ -27,5 +27,6 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
+  "types": ["node", "jest", ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

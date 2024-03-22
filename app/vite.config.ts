@@ -13,7 +13,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '~': '/src/*',
-      '@styles': '/src/assets/styles'
+      '@styles': '/src/assets/styles',
     },
   },
 })
