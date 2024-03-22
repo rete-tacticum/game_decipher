@@ -1,3 +1,5 @@
+/mock/*
+
 # Dependency directories
 node_modules/
 app/node_modules
