@@ -3,10 +3,6 @@ import {
   RIGHT_BRACKETS
 } from '../_constants/hack'
 
-import {
-  mergeArraysToObject
-} from '../helpers'
-
 import generateWords from './wordgen';
 
 import type {
@@ -59,9 +55,6 @@ async function generateConfig ({
     cheatRemove: Math.floor(60 / difficulty),
     wordCount: params.wordQuantity,
     wordLength: params.wordLength,
-    leftOpposites: mergeArraysToObject(LEFT_BRACKETS, RIGHT_BRACKETS),
-    rightOpposites: mergeArraysToObject(RIGHT_BRACKETS, LEFT_BRACKETS),
-    cheats: LEFT_BRACKETS.concat(RIGHT_BRACKETS),
   }
 };
 

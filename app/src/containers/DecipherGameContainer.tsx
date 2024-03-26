@@ -2,11 +2,11 @@ import type {
   DifficultyType,
   VocabularyLang,
   RunningConfig
-} from '../logic/types'
+} from "../logic/types";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { generateConfig } from '../logic/config'
+import { generateConfig } from "../logic/config";
 import { createTextField, createRowHexLabels } from '../logic/textfield';
 
 import HackField from '../components/HackField';
@@ -54,11 +54,6 @@ const DecipherGameContainer: React.FC<DecipherGameContainerProps> = ({
   difficulty = 2,
   cheatChance = 50
 }) => {
-
-  const [log, setLog] = useState<string[]>([]);
-  const [result, setResult] = useState<boolean | null>(null);
-  const [timeLeft, setTimeLeft] = useState<number>(timeout);
-  const [triesLeft, setTriesLeft] = useState<number>(tries);
 
   // text field utility states
   const [init, setInit] = useState<boolean>(false);

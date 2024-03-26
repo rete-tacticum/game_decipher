@@ -2,7 +2,7 @@ type GameStateType = {
   textField: Record<number, string>;
   wordPositions: Record<string, number[]>;
   rowLabels: string[];
-  rowContent: [string, string][];
+  rowContent: [number, string][];
   hovered: number[];
   log: string[];
   triesLeft: number;

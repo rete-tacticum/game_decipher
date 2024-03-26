@@ -21,9 +21,6 @@ type RunningConfig = {
   cheatRemove: number;
   wordCount: number;
   wordLength: number;
-  leftOpposites: Record<string, string>;
-  rightOpposites: Record<string, string>;
-  cheats: string[];
 }
 
 type WordGenOptions = {
