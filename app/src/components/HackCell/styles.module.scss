@@ -1,0 +1,9 @@
+.hover {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    background-color: green;
+  }
+}

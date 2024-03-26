@@ -1,12 +1,12 @@
-import { generateWords } from '../wordgen';
+import { generateWords } from '../../containers/VocabularyContainer/wordgen';
 
 describe('generateWords', () => {
   test('should generate words with default options', async () => {
     const words = await generateWords({ language: 'eng' });
-    expect(words.length).toBe(16); // default word quantity is 16
+    expect(words.length).toBe(16);
     words.forEach(word => {
       expect(typeof word).toBe('string');
-      expect(word.length).toBe(8); // default word length is 8
+      expect(word.length).toBe(8);
     });
   });
 

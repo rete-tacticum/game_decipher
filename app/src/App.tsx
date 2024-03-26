@@ -1,7 +1,19 @@
+import { ErrorBoundary } from 'react-error-boundary';
+
+import DecipherGameContainer from './containers/DecipherGameContainer';
+import ErrorFallback from './components/ErrorFallback';
+
+
 function App() {
   return (
     <>
-      <p>this is the app</p>
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+      >
+        <DecipherGameContainer
+          language='latin'
+        />
+      </ErrorBoundary>
     </>
   )
 }
