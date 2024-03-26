@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  changeme:
+  deciphergame:
     build: .
     command: |
       sh -c "pnpm run dev"

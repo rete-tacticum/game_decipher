@@ -1,7 +1,7 @@
 .PHONY: help start stop build sh run docker-build
 
 .DEFAULT_GOAL := help
-APP_NAME = changeme
+APP_NAME = deciphergame 
 
 RUN_ARGS :=
 
