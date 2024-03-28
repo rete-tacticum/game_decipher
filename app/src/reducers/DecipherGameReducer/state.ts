@@ -4,7 +4,6 @@ const initialState: GameStateType = {
   textField: {},
   wordPositions: {},
   rowLabels: [],
-  rowContent: [],
   hovered: [],
   log: [],
   result: null,
@@ -12,4 +11,9 @@ const initialState: GameStateType = {
   timeLeft: 0,
 };
 
-export { initialState };
+
+const createInitialState = ({ tries, timeout }: { tries: number, timeout?: number}): GameStateType => {
+  return { ...initialState, triesLeft: tries, timeLeft: timeout};
+}
+
+export { initialState, createInitialState };

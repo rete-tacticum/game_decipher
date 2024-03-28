@@ -9,6 +9,7 @@ type ConfigParams = {
   difficulty: DifficultyType;
   tries: number;
   cheatChance: number;
+  timeLimited?: number;
 }
 
 type RunningConfig = {
@@ -21,6 +22,7 @@ type RunningConfig = {
   cheatRemove: number;
   wordCount: number;
   wordLength: number;
+  timeLimited?: number;
 }
 
 type WordGenOptions = {

@@ -1,13 +1,17 @@
+type ActionType = {
+  type: string;
+  payload: any;
+};
+
 type GameStateType = {
   textField: Record<number, string>;
   wordPositions: Record<string, number[]>;
   rowLabels: string[];
-  rowContent: [number, string][];
   hovered: number[];
   log: string[];
   triesLeft: number;
-  timeLeft: number;
   result: boolean | null;
+  timeLeft?: number;
 };
 
 type ResetActionProps = {
@@ -20,6 +24,7 @@ type SetHoveredActionProps = {
 }
 
 export type {
+  ActionType,
   GameStateType,
   ResetActionProps,
   SetHoveredActionProps,

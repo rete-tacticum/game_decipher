@@ -3,11 +3,11 @@ import type {
   VocabularyLang,
   RunningConfig
 } from "../logic/types";
+import type { GameStateType } from '../reducers/DecipherGameReducer/types'
 
 import React, { useState, useEffect } from "react";
 
 import { generateConfig } from "../logic/config";
-import { createTextField, createRowHexLabels } from '../logic/textfield';
 
 import HackField from '../components/HackField';
 
@@ -54,26 +54,24 @@ const DecipherGameContainer: React.FC<DecipherGameContainerProps> = ({
   difficulty = 2,
   cheatChance = 50
 }) => {
-
   // text field utility states
   const [init, setInit] = useState<boolean>(false);
-  const [config, setConfig] = useState<RunningConfig | null>(null);
-  const [rowLabels, setRowLabels] = useState<string[]>([]);
-  const [wordPositions, setWordPositions] = useState<Record<string, number[]>>({});
-  const [textField, setTextField] = useState<string[]>([]);
+  const [config, setConfig] = useState<RunningConfig>();
+  const [gameState, setGameState] = useState<GameStateType>();
 
   const initializeGame = () => {
     if (!config) throw new Error('decipher game config missing');
-    const textGen = createTextField(config);
-
-    setTextField(textGen.field);
-    setWordPositions(textGen.words);
-    setRowLabels(createRowHexLabels());
   };
 
   useEffect(() => {
     async function configure() {
-      const conf = await generateConfig({ language, difficulty, tries, cheatChance });
+      const conf = await generateConfig({
+        language,
+        difficulty,
+        tries,
+        cheatChance,
+        timeLimited: timeout,
+      });
       setConfig(conf);
     }
     configure();

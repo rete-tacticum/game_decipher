@@ -1,8 +1,3 @@
-import {
-  LEFT_BRACKETS,
-  RIGHT_BRACKETS
-} from '../_constants/hack'
-
 import generateWords from './wordgen';
 
 import type {
@@ -37,6 +32,7 @@ async function generateConfig ({
   difficulty,
   tries,
   cheatChance,
+  timeLimited,
 }: ConfigParams): Promise<RunningConfig> {
   const params: genParams = wordGenParams[difficulty];
 
@@ -50,6 +46,7 @@ async function generateConfig ({
     password,
     cheatChance,
     difficulty,
+    timeLimited,
     initialTries: tries || 4,
     cheatRestore: Math.floor(100 / difficulty),
     cheatRemove: Math.floor(60 / difficulty),

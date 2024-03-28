@@ -21,22 +21,23 @@ const getWordRangeBySymbolIndex = ({ symbolIdx, wordPositions }: WordRangeProps)
 type CheatInRowProps = {
   index: number;
   symbol: typeof LEFT_BRACKETS[number];
-  rowContent: [number, string];
+  textField: string[];
 }
 
-const getCheatInRow = ({ symbol, index, rowContent }: CheatInRowProps): number[] | undefined => {
+const getCheatInRow = ({ symbol, index, textField }: CheatInRowProps): number[] | undefined => {
   if (!LEFT_BRACKETS.includes(symbol)) return;
+  const symbols = Object.values(textField);
   const opposite = CHEATS_OPPOSITE[symbol];
-  const hasCheat = rowContent.slice(index).reduce<number | null>((accum, item, index) => {
+  const endIndex = Math.ceil(ROW_COUNT * ROW_LENGTH / index) * ROW_LENGTH;
+  const hasCheat = symbols.slice(index, endIndex).reduce<number | null>((accum, item, index) => {
     if (item[1] === opposite) accum = index;
     return accum;
   }, null)
   if (hasCheat) return [index, hasCheat];
 }
 
-const getRowBySymbolIndex = ({ index }): number | null => {
+const getRowBySymbolIndex = ({ index }: { index: number }): number => {
   const symbolsCount = ROW_COUNT * ROW_LENGTH;
-  if (index < 0 || index > symbolsCount) return null;
   return Math.floor(symbolsCount / index);
 }
 
