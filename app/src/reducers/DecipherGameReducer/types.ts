@@ -4,7 +4,7 @@ type ActionType = {
 };
 
 type GameStateType = {
-  textField: Record<number, string>;
+  textField: string[];
   wordPositions: Record<string, number[]>;
   rowLabels: string[];
   hovered: number[];

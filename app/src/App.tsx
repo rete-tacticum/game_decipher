@@ -1,7 +1,8 @@
 import { ErrorBoundary } from 'react-error-boundary';
 
-import DecipherGameContainer from './containers/DecipherGameContainer';
 import ErrorFallback from './components/ErrorFallback';
+
+import DecipherGame from './components/DecipherGame';
 
 
 function App() {
@@ -10,8 +11,11 @@ function App() {
       <ErrorBoundary
         FallbackComponent={ErrorFallback}
       >
-        <DecipherGameContainer
+        <DecipherGame
           language='latin'
+          timeout={100}
+          difficulty={3}
+          tries={5}
         />
       </ErrorBoundary>
     </>

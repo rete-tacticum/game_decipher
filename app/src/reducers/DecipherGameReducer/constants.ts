@@ -1,13 +1,9 @@
-const RESET_STATE = 'reset_state';
-const PREPARE_STATE = 'prepare_state';
-const SET_HOVERED = 'set_hovered';
-const RESET_HOVERED = 'reset_hovered';
-const SET_TEXTFIELD = 'set_textfield';
+const PREPARE_STATE = 'prepareState';
+const SET_HOVERED = 'setHovered';
+const RESET_HOVERED = 'resetHovered';
 
 export {
-  RESET_STATE,
   SET_HOVERED,
   RESET_HOVERED,
-  SET_TEXTFIELD,
   PREPARE_STATE,
 }

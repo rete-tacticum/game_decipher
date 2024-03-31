@@ -3,14 +3,13 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 interface HackCellProps {
-  index: number;
   symbol: string;
   hovering?: boolean;
 }
 
-const HackCell: React.FC<HackCellProps> = ({ index, symbol, hovering = false }: HackCellProps) => {
+const HackCell: React.FC<HackCellProps> = ({ symbol, hovering = false }: HackCellProps) => {
 
-  const reportHovering = (value: boolean) => console.log(index);
+  const reportHovering = (value: boolean) => console.log(symbol, value);
 
   return (
     <span

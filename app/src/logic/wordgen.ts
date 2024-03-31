@@ -2,7 +2,7 @@
   This module generates word list from provided vocabulary
 */
 
-import { getRandomFromArray } from '../helpers';
+import { getRandomFromArray } from './helpers';
 import type {
   VocabularyLang,
   VocabularyWordLen,
@@ -23,25 +23,21 @@ function compare(target: string, source: string): number {
 async function getVocabulary(
   { language, wordLength }: { language: VocabularyLang, wordLength: VocabularyWordLen }
 ): Promise<string[]> {
+  const vocabulary = await import(`../_constants/vocab/${language}/${wordLength}.json`);
+  return vocabulary.default || [];
+}
+
+async function generateWords({ language, wordQuantity = 16, wordLength = 8 }: WordGenOptions): Promise<WordGenResult> {
   if (wordLength < 6 || wordLength > 12) {
     throw new Error('word length not in range 6 - 12');
   }
 
   if (language === 'latin' && wordLength > 10) {
-    console.error('latin vocabulary for more than 10 chars unavailable, using 10 char words');
     wordLength = 10;
   }
 
-  try {
-    const vocabulary = await import(`../_constants/vocab/${language}/${wordLength}.json`);
-    return vocabulary.default || [];
-  } catch (error) {
-    throw error;
-  }
-}
-
-async function generateWords({ language, wordQuantity = 16, wordLength = 8 }: WordGenOptions): Promise<WordGenResult> {
   const vocabulary = await getVocabulary({language, wordLength});
+
   const password = getRandomFromArray(vocabulary);
   const wordsSelected: string[] = [password];
 
@@ -85,9 +81,10 @@ async function generateWords({ language, wordQuantity = 16, wordLength = 8 }: Wo
 
   return {
     words: wordsSelected.sort(() => Math.random() - 0.5),
-    password: password
+    password: password,
+    wordLength,
   }
 }
 
-export { generateWords };
+export { generateWords, getVocabulary };
 export default generateWords;

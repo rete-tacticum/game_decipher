@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 interface HackRowProps {
   hash: string;
-  symbols: Record<string, string>[];
+  symbols: string[];
 }
 
 const HackRow: React.FC<HackRowProps> = ({ hash, symbols }: HackRowProps) => {
@@ -24,9 +24,7 @@ const HackRow: React.FC<HackRowProps> = ({ hash, symbols }: HackRowProps) => {
     <div className={styles.container}>
       <span className={styles.label}>${hash}</span>
       <span className={styles.content}>
-        {symbols.map((item) => (
-          <HackCell key={nanoid()} index={parseInt(item[0], 10)} symbol={item[1]} />
-        ))}
+        {symbols.map((item) => <HackCell key={nanoid()} symbol={item}/>)}
       </span>
     </div>
   );

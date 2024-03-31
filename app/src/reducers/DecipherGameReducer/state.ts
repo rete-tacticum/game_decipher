@@ -1,7 +1,7 @@
 import type { GameStateType } from "./types";
 
 const initialState: GameStateType = {
-  textField: {},
+  textField: [],
   wordPositions: {},
   rowLabels: [],
   hovered: [],

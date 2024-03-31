@@ -2,14 +2,20 @@ type FieldSizePermitted = 12 | 16;
 type VocabularyLang = 'eng' | 'latin' | 'ru_lat';
 type VocabularyWordLen = 6 | 8 | 10 | 12;
 type WordQuantity = 12 | 16;
-type DifficultyType = 1 | 2 | 3 | 4;
+type DifficultyType = 0 | 1 | 2 | 3 ;
 
 type ConfigParams = {
   language: VocabularyLang;
   difficulty: DifficultyType;
   tries: number;
-  cheatChance: number;
-  timeLimited?: number;
+  timeout: number;
+}
+
+type CheatParams = {
+  lowDifficultyCount: number[];
+  highDifficultyCount: number[];
+  cheatRestore: number[];
+  cheatRemove: number[];
 }
 
 type RunningConfig = {
@@ -17,9 +23,7 @@ type RunningConfig = {
   password: string;
   initialTries: number;
   difficulty: DifficultyType;
-  cheatChance: number;
-  cheatRestore: number;
-  cheatRemove: number;
+  cheatParams: CheatParams;
   wordCount: number;
   wordLength: number;
   timeLimited?: number;
@@ -34,6 +38,7 @@ type WordGenOptions = {
 type WordGenResult = {
   words: string[];
   password: string;
+  wordLength: VocabularyWordLen;
 }
 
 type TextGenResult = {
@@ -42,6 +47,7 @@ type TextGenResult = {
 }
 
 export type {
+  CheatParams,
   VocabularyWordLen,
   WordGenOptions,
   WordGenResult,

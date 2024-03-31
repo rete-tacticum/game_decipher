@@ -1,12 +1,23 @@
 import generateWords from './wordgen';
 
+import { getRange } from './helpers';
+
 import type {
+  CheatParams,
   ConfigParams,
   RunningConfig,
   WordGenOptions,
 } from './types'
 
 type genParams = Omit<Required<WordGenOptions>, 'language'>;
+
+// balancing cheats
+const cheatParams: CheatParams = {
+  lowDifficultyCount: getRange(4, 7),
+  highDifficultyCount: getRange(6, 8),
+  cheatRestore: [100, 80, 60, 50], // difficulty from 0 to 3
+  cheatRemove: [75, 66, 50, 33], // difficulty from 0 to 3
+}
 
 const wordGenParams: genParams[] = [
   {
@@ -31,12 +42,14 @@ async function generateConfig ({
   language,
   difficulty,
   tries,
-  cheatChance,
-  timeLimited,
+  timeout,
 }: ConfigParams): Promise<RunningConfig> {
+  if (difficulty > wordGenParams.length - 1) {
+    throw new Error(`difficulty should be in range 0 - ${wordGenParams.length - 1}`)
+  }
   const params: genParams = wordGenParams[difficulty];
 
-  const { words, password } = await generateWords({
+  const { words, password, wordLength } = await generateWords({
     language,
     ...params,
   })
@@ -44,14 +57,12 @@ async function generateConfig ({
   return {
     words,
     password,
-    cheatChance,
     difficulty,
-    timeLimited,
+    cheatParams,
+    wordLength,
+    timeLimited: timeout > 0 ? timeout : undefined,
     initialTries: tries || 4,
-    cheatRestore: Math.floor(100 / difficulty),
-    cheatRemove: Math.floor(60 / difficulty),
     wordCount: params.wordQuantity,
-    wordLength: params.wordLength,
   }
 };
 

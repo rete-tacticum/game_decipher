@@ -7,6 +7,8 @@ function shuffle<T>(array: T[]): T[] {
 }
 
 function getRange(start: number, end: number): number[] {
+  if (end < start) return [];
+  if (start === end) return [start, end];
   return Array(end - start + 1).fill(0).map((_, idx) => start + idx)
 }
 
@@ -17,6 +19,7 @@ function getRandomInt(min: number, max: number): number {
 }
 
 function getRandomFromArray<T>(items: T[]): T {
+  if (items.length === 0) throw new Error('Cannot get random from empty array');
   return items[Math.floor(Math.random() * items.length)];
 }
 
