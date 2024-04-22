@@ -1,33 +1,41 @@
-import React, { useRef, useEffect } from 'react';
-
-import { nanoid } from 'nanoid';
+import React, { useState, useEffect } from 'react';
+import { DecipherGameStateDispatch } from '../types';
+import { ROW_LENGTH } from '../../_constants/hack';
 
 import HackCell from '../HackCell';
 
 import styles from './styles.module.scss';
 
-interface HackRowProps {
+type HackRowProps = {
+  order: number;
   hash: string;
   symbols: string[];
-}
+} & DecipherGameStateDispatch;
 
-const HackRow: React.FC<HackRowProps> = ({ hash, symbols }: HackRowProps) => {
-  const range = useRef<string[]>([]);
+const HackRow: React.FC<HackRowProps> = ({ hash, order, symbols, state, dispatch }: HackRowProps) => {
+  const [range, setRange] = useState<number[]>([0, ROW_LENGTH]);
 
   useEffect(() => {
-    if (symbols[0]) {
-      range.current = [symbols[0][0], symbols[symbols.length - 1][0]];
+    if (symbols.length) {
+      const start = order * ROW_LENGTH;
+      setRange([start, start + ROW_LENGTH - 1]);
     }
-  }, [symbols]);
+  }, [0, ROW_LENGTH]);
 
   return (
     <div className={styles.container}>
       <span className={styles.label}>${hash}</span>
       <span className={styles.content}>
-        {symbols.map((item) => <HackCell key={nanoid()} symbol={item}/>)}
+        {symbols.map((item, index) => <HackCell
+          key={index + range[0]}
+          uid={index + range[0]}
+          symbol={item}
+          state={state}
+          dispatch={dispatch}
+        />)}
       </span>
     </div>
   );
-}
+};
 
 export default HackRow;

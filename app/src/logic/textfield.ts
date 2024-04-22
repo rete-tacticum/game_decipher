@@ -13,7 +13,7 @@ import {
   CHEATS_OPPOSITE,
   ROW_COUNT,
   ROW_LENGTH,
-} from '../_constants/hack'
+} from '../_constants/hack';
 
 import { notIsAlpha, longestStreak } from './utils';
 
@@ -24,8 +24,8 @@ const createRowHexLabels = (): string[] => {
   return emptyArray.map((_i, index, _a) => {
     const number = index === 0 ? startIndex : startIndex + 16 * index;
     return `0x${number.toString(16).toUpperCase()}`;
-  })
-}
+  });
+};
 
 const placeCheatInRow = (row: string[]): [boolean, string[]] => {
   const [start, end] = longestStreak(row, notIsAlpha);
@@ -39,7 +39,7 @@ const placeCheatInRow = (row: string[]): [boolean, string[]] => {
   } else {
     return [false, row];
   }
-}
+};
 
 const placeCheats = (config: RunningConfig, textfield: string[]): string[] => {
   // cheats spawn rates could and should be fine-tuned
@@ -50,7 +50,7 @@ const placeCheats = (config: RunningConfig, textfield: string[]): string[] => {
   const percentModifier = 10;
   const distributionRate = Math.floor(ROW_COUNT / numberOfCheats);
   // getting groups of rows as a result
-  const rows = getChunks(textfield, ROW_LENGTH)
+  const rows = getChunks(textfield, ROW_LENGTH);
   const rowGroups = getChunks(rows, distributionRate);
 
   let cheatsPlaced = 0;
@@ -65,7 +65,7 @@ const placeCheats = (config: RunningConfig, textfield: string[]): string[] => {
         if ((index * ROW_LENGTH) % distributionRate === 0) {
           shouldSpawn = true;
         } else {
-          const chanceMod = (Math.floor(100 / rowGroup.length) * index) + percentModifier
+          const chanceMod = (Math.floor(100 / rowGroup.length) * index) + percentModifier;
           shouldSpawn = getRandomFromArray([0, 100]) <= chanceMod;
         }
       }
@@ -81,18 +81,18 @@ const placeCheats = (config: RunningConfig, textfield: string[]): string[] => {
       }
       return row;
     });
-  })
+  });
   return result.flat(2);
-}
+};
 
 const createTextField = (config: RunningConfig): TextGenResult => {
   const result: string[] = [];
   const wordPositions: Record<string, number[]> = {};
 
-  let words: string[] = [...config.words]
+  const words: string[] = [...config.words];
 
   const totalSymbolsCount = ROW_COUNT * ROW_LENGTH;
-  const fieldSize = totalSymbolsCount - (config.wordCount * config.wordLength)
+  const fieldSize = totalSymbolsCount - (config.wordCount * config.wordLength);
   const wordDistributionRate = Math.ceil(fieldSize / config.wordCount - 1);
 
   let wordSpawnChance = 0;
@@ -124,10 +124,10 @@ const createTextField = (config: RunningConfig): TextGenResult => {
   return {
     field: placeCheats(config, result.join('').split('')),
     words: wordPositions,
-  }
-}
+  };
+};
 
 export {
   createTextField,
   createRowHexLabels
-}
+};

@@ -16,4 +16,4 @@ export default defineConfig({
       '@styles': '/src/assets/styles',
     },
   },
-})
+});

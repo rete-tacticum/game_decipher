@@ -46,15 +46,25 @@ type TextGenResult = {
   field: string[];
 }
 
+type GetVocabParams = Omit<Required<WordGenOptions>, 'wordQuantity'>;
+
+type WordRangeOptions = {
+  symbolIdx: number;
+  wordPositions: Record<string, number[]>;
+  isRange: boolean;
+}
+
 export type {
   CheatParams,
   VocabularyWordLen,
   WordGenOptions,
   WordGenResult,
+  WordRangeOptions,
   TextGenResult,
   FieldSizePermitted,
   DifficultyType,
   VocabularyLang,
+  GetVocabParams,
   ConfigParams,
   RunningConfig
 };

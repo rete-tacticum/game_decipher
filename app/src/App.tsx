@@ -12,14 +12,14 @@ function App() {
         FallbackComponent={ErrorFallback}
       >
         <DecipherGame
-          language='latin'
+          language='eng'
           timeout={100}
           difficulty={3}
           tries={5}
         />
       </ErrorBoundary>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

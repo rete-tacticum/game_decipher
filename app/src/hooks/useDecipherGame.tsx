@@ -1,10 +1,10 @@
 import { useState, useEffect, useReducer } from "react";
 import { generateConfig } from "../logic/config";
+import { generateWords } from '../logic/wordgen';
 
 import type { RunningConfig, ConfigParams } from "../logic/types";
 
 import decipherGameReducer from '../reducers/DecipherGameReducer';
-// import actionHandlers from "../reducers/DecipherGameReducer/handlers";
 import { PREPARE_STATE } from "../reducers/DecipherGameReducer/constants";
 
 /**
@@ -23,12 +23,15 @@ const useDecipherGame = ({
   useEffect(() => {
     async function configure() {
       try {
-        const conf = await generateConfig({
-          language,
-          difficulty,
-          tries,
-          timeout,
-        });
+        const conf = await generateConfig(
+          generateWords,
+          {
+            language,
+            difficulty,
+            tries,
+            timeout,
+          }
+        );
         setConfig(conf);
       } catch (err) {
         setError(err as Error);
@@ -42,7 +45,7 @@ const useDecipherGame = ({
       dispatch({
         type: PREPARE_STATE,
         payload: { config: config },
-      })
+      });
     }
   }, [config]);
 

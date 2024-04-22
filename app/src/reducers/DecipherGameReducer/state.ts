@@ -14,6 +14,6 @@ const initialState: GameStateType = {
 
 const createInitialState = ({ tries, timeout }: { tries: number, timeout?: number}): GameStateType => {
   return { ...initialState, triesLeft: tries, timeLeft: timeout};
-}
+};
 
 export { initialState, createInitialState };

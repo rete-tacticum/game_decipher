@@ -4,11 +4,9 @@
 
 import { getRandomFromArray } from './helpers';
 import type {
-  VocabularyLang,
-  VocabularyWordLen,
   WordGenOptions,
   WordGenResult
-} from './types'
+} from './types';
 
 function compare(target: string, source: string): number {
   let count = 0;
@@ -20,14 +18,10 @@ function compare(target: string, source: string): number {
   return count;
 }
 
-async function getVocabulary(
-  { language, wordLength }: { language: VocabularyLang, wordLength: VocabularyWordLen }
-): Promise<string[]> {
-  const vocabulary = await import(`../_constants/vocab/${language}/${wordLength}.json`);
-  return vocabulary.default || [];
-}
-
-async function generateWords({ language, wordQuantity = 16, wordLength = 8 }: WordGenOptions): Promise<WordGenResult> {
+async function generateWords(
+    vocabulary: string[],
+    { language, wordQuantity = 16, wordLength = 8 }: WordGenOptions
+  ): Promise<WordGenResult> {
   if (wordLength < 6 || wordLength > 12) {
     throw new Error('word length not in range 6 - 12');
   }
@@ -36,14 +30,12 @@ async function generateWords({ language, wordQuantity = 16, wordLength = 8 }: Wo
     wordLength = 10;
   }
 
-  const vocabulary = await getVocabulary({language, wordLength});
-
   const password = getRandomFromArray(vocabulary);
   const wordsSelected: string[] = [password];
 
-  let wordsMax: string[] = [];
-  let wordsZero: string[] = [];
-  let wordsOther: string[] = [];
+  const wordsMax: string[] = [];
+  const wordsZero: string[] = [];
+  const wordsOther: string[] = [];
   let wordDelta = 2;
 
   while (wordsMax.length === 0) {
@@ -83,8 +75,7 @@ async function generateWords({ language, wordQuantity = 16, wordLength = 8 }: Wo
     words: wordsSelected.sort(() => Math.random() - 0.5),
     password: password,
     wordLength,
-  }
+  };
 }
 
-export { generateWords, getVocabulary };
-export default generateWords;
+export { generateWords };

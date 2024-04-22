@@ -34,7 +34,7 @@ const actionHandlers = {
       textField: textfield.field,
       wordPositions: textfield.words,
       rowLabels: createRowHexLabels(),
-    }
+    };
     return state;
   },
   [SET_HOVERED]: (
@@ -46,7 +46,7 @@ const actionHandlers = {
       symbolIdx: index,
       wordPositions: state.wordPositions,
       isRange: true
-    })
+    });
     if (wordRange) {
       state = { ...state, hovered: getRange(wordRange[0], wordRange[1]) };
       return state;
@@ -61,14 +61,14 @@ const actionHandlers = {
     const cheatRange = getCheatInRow({
       index: index % ROW_LENGTH,
       row: rowContent,
-    })
+    });
     if (cheatRange) {
       state = { ...state, hovered: cheatRange };
       return state;
     }
     // or returning just one hovered symbol
     state = {...state, hovered: [index]};
-    return state
+    return state;
   },
   [RESET_HOVERED]: (state: GameStateType): GameStateType => {
     state = {...state, hovered: []};

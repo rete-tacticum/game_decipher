@@ -6,4 +6,4 @@ export {
   SET_HOVERED,
   RESET_HOVERED,
   PREPARE_STATE,
-}
+};
