@@ -1,16 +1,22 @@
+import type { RunningConfig } from "../../logic/types";
+
 type ActionType = {
   type: string;
   payload: any;
 };
 
 type GameStateType = {
+  config: RunningConfig;
   textField: string[];
   wordPositions: Record<string, number[]>;
+  cheatsPositions: number[][];
+  selectedCheat: number | null;
+  selectedWord: string | null;
   rowLabels: string[];
-  hovered: number[];
+  hovered: Set<number>;
   log: string[];
   triesLeft: number;
-  result: boolean | null;
+  result: string;
   timeLeft?: number;
 };
 

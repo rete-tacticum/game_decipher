@@ -1,4 +1,4 @@
-import { ActionType, GameStateType } from '../reducers/DecipherGameReducer/types';
+import { ActionType, GameStateType } from '../state/game/types';
 
 type DecipherGameStateDispatch = {
   state: GameStateType;

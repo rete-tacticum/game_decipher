@@ -4,7 +4,6 @@ import { getVocabularyFromJSON } from './utils';
 import type {
   CheatParams,
   ConfigParams,
-  GetVocabParams,
   RunningConfig,
   WordGenOptions,
   WordGenResult,
@@ -16,8 +15,8 @@ type genParams = Omit<Required<WordGenOptions>, 'language'>;
 const cheatParams: CheatParams = {
   lowDifficultyCount: getRange(4, 7),
   highDifficultyCount: getRange(6, 8),
-  cheatRestore: [100, 80, 60, 50], // difficulty from 0 to 3
-  cheatRemove: [75, 66, 50, 33], // difficulty from 0 to 3
+  cheatRestore: [35, 25, 20, 15], // difficulty from 0 to 3
+  cheatRemove: [70, 50, 40, 25], // difficulty from 0 to 3
 };
 
 const wordGenParams: genParams[] = [

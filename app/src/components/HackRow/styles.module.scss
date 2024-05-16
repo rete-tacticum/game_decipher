@@ -1,7 +1,6 @@
 .container {
   display: flex;
   gap: 0.75em;
-  font-family: 'Courier New', Courier, monospace;
 }
 
 .label {
@@ -11,4 +10,14 @@
 .content {
   font-weight: 600;
   letter-spacing: 2px;
+}
+
+.hovered {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    background-color: var(--highlightColor);
+  }
 }

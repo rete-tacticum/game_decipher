@@ -4,8 +4,8 @@ import { generateWords } from '../logic/wordgen';
 
 import type { RunningConfig, ConfigParams } from "../logic/types";
 
-import decipherGameReducer from '../reducers/DecipherGameReducer';
-import { PREPARE_STATE } from "../reducers/DecipherGameReducer/constants";
+import decipherGameReducer from '../state/game';
+import { PREPARE_STATE } from "../state/game/constants";
 
 /**
  * useDecipherGame is a custom hook for managing the Decipher game config and state.

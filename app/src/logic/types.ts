@@ -43,7 +43,18 @@ type WordGenResult = {
 
 type TextGenResult = {
   words: Record<string, number[]>;
+  cheats: number[][];
   field: string[];
+}
+
+type CheatsPlaceResult = {
+  textfield: string[];
+  cheatsPos: number[][];
+}
+
+type WordsPlaceResult = {
+  textfield: string[];
+  wordsPos: Record<string, number[]>;
 }
 
 type GetVocabParams = Omit<Required<WordGenOptions>, 'wordQuantity'>;
@@ -51,7 +62,6 @@ type GetVocabParams = Omit<Required<WordGenOptions>, 'wordQuantity'>;
 type WordRangeOptions = {
   symbolIdx: number;
   wordPositions: Record<string, number[]>;
-  isRange: boolean;
 }
 
 export type {
@@ -61,6 +71,8 @@ export type {
   WordGenResult,
   WordRangeOptions,
   TextGenResult,
+  WordsPlaceResult,
+  CheatsPlaceResult,
   FieldSizePermitted,
   DifficultyType,
   VocabularyLang,

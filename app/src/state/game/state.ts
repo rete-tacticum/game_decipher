@@ -3,12 +3,16 @@ import type { GameStateType } from "./types";
 const initialState: GameStateType = {
   textField: [],
   wordPositions: {},
+  cheatsPositions: [],
+  selectedCheat: null,
+  selectedWord: null,
   rowLabels: [],
-  hovered: [],
+  hovered: new Set(),
   log: [],
-  result: null,
+  result: '',
   triesLeft: 0,
   timeLeft: 0,
+  config: null,
 };
 
 

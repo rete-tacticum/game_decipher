@@ -1,8 +1,59 @@
-.container {
+.hackGame {
   display: flex;
-  font-size: 1.5em;
+  flex-direction: column;
+  gap: 1em;
+  user-select: none;
+  color: var(--colorPrimary);
+  background: var(--colorAccent);
+  font-family: var(--fontPrimary);
+  font-size: var(--baseSize);
 }
 
-.column {
-  padding: 0.75em;
+.fieldContainer {
+  width: 100%;
+  display: flex;
+  font-size: 1.5em;
+  gap: 1em;
+}
+
+.triesContainer {
+  display: flex;
+  height: 1.5em;
+  font-weight: 800;
+  font-size: 1.5em;
+  gap: 0.5em;
+  .block {
+    color: var(--colorPrimary);
+  }
+}
+
+.logContainer {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+}
+
+.log {
+  position: absolute;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.records {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.record {
+  width: 100%;
+  font-size: 0.75em;
+
+  &::before {
+    content: '> ';
+  }
 }

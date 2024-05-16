@@ -20,7 +20,7 @@ services:
     volumes:
       - ./mock/db.json:/data/db.json
     ports:
-      - 9000:80
+      - 10000:80
 
 volumes:
   node_volume: {}

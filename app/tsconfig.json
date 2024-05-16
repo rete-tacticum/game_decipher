@@ -16,8 +16,7 @@
     "baseUrl": "./",
     /* path aliases */
     "paths": {
-      "~/": ["src/*"],
-      "@/": ["src/*"]
+      "react-vite-library": ["src/index.ts"]
     },
 
     /* Linting */
@@ -27,6 +26,6 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
-  "types": ["node", "jest", ],
+  "types": ["node", "jest"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
