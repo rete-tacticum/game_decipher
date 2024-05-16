@@ -1,7 +1,7 @@
 .PHONY: help start stop build sh run docker-build
 
 .DEFAULT_GOAL := help
-APP_NAME = changeme
+APP_NAME = deciphergame 
 
 RUN_ARGS :=
 
@@ -30,7 +30,7 @@ sh: ## Get a shell inside the app container
 	@docker-compose exec ${APP_NAME} sh
 
 run: ## Start service with arguments passed to npm run (e.g., make run start or make run build)
-	@docker-compose run --rm --service-ports ${APP_NAME} sh -c "npm run $(RUN_ARGS)"
+	@docker-compose run --rm ${APP_NAME} sh -c "npm run $(RUN_ARGS)"
 
 help: ## Show this help message
 	@echo "Available commands:"

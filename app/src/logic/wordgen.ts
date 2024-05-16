@@ -3,16 +3,10 @@
 */
 
 import { getRandomFromArray } from './helpers';
-
-type vocabularyLang = 'eng' | 'latin' | 'ru_lat';
-type vocabularyWordLen = 6 | 8 | 10 | 12;
-type wordQuantity = 8 | 16;
-
-interface WordGenOptions {
-  language: vocabularyLang;
-  wordQuantity?: wordQuantity;
-  wordLength?: vocabularyWordLen;
-}
+import type {
+  WordGenOptions,
+  WordGenResult
+} from './types';
 
 function compare(target: string, source: string): number {
   let count = 0;
@@ -24,34 +18,24 @@ function compare(target: string, source: string): number {
   return count;
 }
 
-async function getVocabulary(
-  { language, wordLength }: { language: vocabularyLang, wordLength: vocabularyWordLen }
-): Promise<string[]> {
+async function generateWords(
+    vocabulary: string[],
+    { language, wordQuantity = 16, wordLength = 8 }: WordGenOptions
+  ): Promise<WordGenResult> {
   if (wordLength < 6 || wordLength > 12) {
     throw new Error('word length not in range 6 - 12');
   }
 
   if (language === 'latin' && wordLength > 10) {
-    console.error('latin vocabulary for more than 10 chars unavailable, using 10 char words');
     wordLength = 10;
   }
 
-  try {
-    const vocabulary = await import(`../_constants/vocabularies/${language}/${wordLength}.json`);
-    return vocabulary;
-  } catch (error) {
-    throw error;
-  }
-}
-
-async function generateWords({ language, wordQuantity = 16, wordLength = 8 }: WordGenOptions): Promise<string[]> {
-  const vocabulary = await getVocabulary({language, wordLength});
   const password = getRandomFromArray(vocabulary);
   const wordsSelected: string[] = [password];
 
-  let wordsMax: string[] = [];
-  let wordsZero: string[] = [];
-  let wordsOther: string[] = [];
+  const wordsMax: string[] = [];
+  const wordsZero: string[] = [];
+  const wordsOther: string[] = [];
   let wordDelta = 2;
 
   while (wordsMax.length === 0) {
@@ -87,8 +71,11 @@ async function generateWords({ language, wordQuantity = 16, wordLength = 8 }: Wo
     }
   }
 
-  return wordsSelected.sort(() => Math.random() - 0.5);
+  return {
+    words: wordsSelected.sort(() => Math.random() - 0.5),
+    password: password,
+    wordLength,
+  };
 }
 
 export { generateWords };
-export default generateWords;
