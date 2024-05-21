@@ -38,10 +38,5 @@ jobs:
       - name: Setup npmrc
         run: echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
 
-      - name: Set version to release tag
-        shell: bash
-        run: pnpm version from-git --no-commit-hooks --no-git-tag-version --allow-same-version
-
       - name: Publish
-        shell: bash
         run: pnpm publish --access restricted --no-git-checks
