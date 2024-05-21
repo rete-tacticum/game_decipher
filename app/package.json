@@ -1,14 +1,32 @@
 {
-  "name": "blackshell",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@zerthmonk/blackshell-decipher-game",
+  "version": "1.0.1",
   "type": "module",
+  "description": "Decipher game for blackshell terminal project",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "url": "git+https://github.com/zerthmonk/deciphergame.git"
+  },
+  "main": "./dist/blackshell-decipher-game.umd.js",
+  "module": "./dist/blackshell-decipher-game.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/blackshell-decipher-game.es.js",
+      "require": "./dist/blackshell-decipher-game.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite --host=0.0.0.0 --port=3000",
     "build": "tsc && vite build",
     "lint": "eslint . --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint-fix": "eslint . --ext js,ts,tsx --report-unused-disable-directives --fix",
-    "preview": "vite preview",
+    "preview": "vite preview --host=0.0.0.0 --port=3111",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
@@ -55,5 +73,17 @@
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.3.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

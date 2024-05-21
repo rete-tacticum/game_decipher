@@ -2,9 +2,9 @@ import {
   LEFT_BRACKETS, 
   RIGHT_BRACKETS, 
   GARBAGE_CHARS, 
-} from '../_constants/hack';
+} from '../constants';
 
-import { GetVocabParams, WordRangeOptions } from './types';
+import { GetVocabParams } from './types';
 
 const NOT_AN_ALPHA = [ ...GARBAGE_CHARS, ...RIGHT_BRACKETS, ...LEFT_BRACKETS ];
 const isAlpha = (symbol: string) => !NOT_AN_ALPHA.includes(symbol);
@@ -49,7 +49,7 @@ function longestStreak<T>(
 async function getVocabularyFromJSON(
   { language, wordLength }: GetVocabParams
 ): Promise<string[]> {
-  const vocabulary = await import(`../_constants/vocab/${language}/${wordLength}.json`);
+  const vocabulary = await import(`../assets/vocab/${language}/${wordLength}.json`);
   return vocabulary.default || [];
 }
 

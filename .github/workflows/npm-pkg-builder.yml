@@ -1,48 +1,50 @@
-name: Node.js Package
+name: "[PUBLISH] decipher game"
 
 on:
-  push: [test_build]
+  release:
+    types:
+      - published
+
+defaults:
+  run:
+    working-directory: app
+env:
+  PNPM_CACHE_FOLDER: .pnpm-store
 
 jobs:
-  pnpm-publish:
+  publish-package:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Node.js
+      - name: Setup npmrc
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@zerthmonk'
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
           run_install: false
+          standalone: true
+          package_json_file: app/package.json
+          dest: ~/setup-pnpm
 
-      - name: Get pnpm store directory
-        shell: bash
+      - name: Build
         run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+          pnpm config set store-dir $PNPM_CACHE_FOLDER
+          pnpm install
+          pnpm build
 
-      - uses: actions/cache@v4
-        name: Setup pnpm cache
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Run tests (might include publishing)
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: https://npm.pkg.github.com/
-        run: pnpm test
-
-      - name: Publish package (use dedicated token for security)
+      - name: Publish
+        run: npm publish --provenance --access public --no-git-checks --scope=@zerthmonk
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.PACKAGE_PUBLISH_TOKEN }}  # Replace with your dedicated token name
-        run: pnpm publish
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+permissions:
+  contents: write
+  id-token: write

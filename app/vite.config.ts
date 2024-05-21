@@ -1,3 +1,5 @@
+import path from 'path';
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -8,10 +10,28 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
   ],
-  resolve: {
-    alias: {
-      '~': '/src/*',
-      '@styles': '/src/assets/styles',
+  assetsInclude: [
+    "**/*.mp3",
+    "**/*.ttf"
+  ],
+  build: {
+    lib: {
+      entry: path.resolve("src", "index.ts"),
+      name: 'Blackshell Decipher Game',
+      fileName: (format: string) => `blackshell-decipher-game.${format}.js`
     },
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      input: {
+        main: resolve(__dirname, "src", "index.ts"),
+      },
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+        }
+      },
+      sourcemap: 'inline',
+    }
   },
 });
