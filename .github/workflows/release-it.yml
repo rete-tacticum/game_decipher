@@ -15,7 +15,7 @@ on:
 
 defaults:
   run:
-    working-directory: app
+    working-directory: ../
 
 jobs:
   release-tag-changelog:
@@ -58,6 +58,6 @@ jobs:
         echo "increment=$increment" >> $GITHUB_ENV
     - name: Create tag/release, update CHANGELOG.md
       run: |
-        release-it --config ../.github/release-it.json --ci --increment=$increment
+        release-it --config .github/release-it.json --ci --increment=$increment
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_PAT }}
