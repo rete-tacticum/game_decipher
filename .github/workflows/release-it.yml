@@ -13,6 +13,10 @@ on:
         required: true
         default: Z
 
+defaults:
+  run:
+    working-directory: app
+
 jobs:
   release-tag-changelog:
     name: Release, Tag, Changelog
