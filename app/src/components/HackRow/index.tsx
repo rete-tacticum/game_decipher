@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { DecipherGameStateDispatch } from "../types";
-import { ROW_LENGTH } from "../../_constants/hack";
+import { ROW_LENGTH } from "../../constants";
 import {
   RESET_HOVERED,
   SET_HOVERED,
@@ -9,11 +9,12 @@ import {
 } from "../../state/game/constants";
 import { convertToSet, isSetsOverlap, getRange } from "../../logic/helpers";
 import { useWithSound } from "../../hooks/useWithSound";
-import touch from "../../assets/sound/touch.mp3";
 
 import RandomizeText from "../RandomizeText";
 
 import styles from "./styles.module.scss";
+
+const touch = new URL("/sound/touch.mp3", import.meta.url);
 
 type HackRowProps = {
   order: number;
@@ -37,7 +38,7 @@ const HackRow: React.FC<HackRowProps> = ({
 
   const [hoveredCells, setHoveredCells] = useState<Set<number>>(emptySet);
 
-  const [playSelectSound] = useWithSound(touch);
+  const [playSelectSound] = useWithSound(touch.href);
 
   useEffect(() => {
     if (isSetsOverlap(cellRangeSet, state.hovered)) {

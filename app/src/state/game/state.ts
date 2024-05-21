@@ -12,6 +12,7 @@ const initialState: GameStateType = {
   result: '',
   triesLeft: 0,
   timeLeft: 0,
+  // @ts-ignore
   config: null,
 };
 

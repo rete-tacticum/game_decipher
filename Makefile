@@ -21,7 +21,6 @@ build: ## Build dist package + .tgz package for publishing
 	@rm -rf $(PWD)/dist
 	@mkdir $(PWD)/dist
 	@docker-compose run --rm -v $(PWD)/dist:/opt/app/dist ${APP_NAME} sh -c "pnpm run build && pnpm pack --pack-destination /opt/app/dist"
-	@rm -rf $(PWD)/app/dist
 
 stop: ## Stop all services and remove orphaned containers
 	@docker-compose down --remove-orphans
@@ -29,8 +28,8 @@ stop: ## Stop all services and remove orphaned containers
 sh: ## Get a shell inside the app container
 	@docker-compose exec ${APP_NAME} sh
 
-run: ## Start service with arguments passed to npm run (e.g., make run start or make run build)
-	@docker-compose run --rm ${APP_NAME} sh -c "npm run $(RUN_ARGS)"
+run: ## Start service with arguments passed to pnpm run (e.g., make run start or make run build)
+	@docker-compose run --rm ${APP_NAME} sh -c "pnpm run $(RUN_ARGS)"
 
 help: ## Show this help message
 	@echo "Available commands:"

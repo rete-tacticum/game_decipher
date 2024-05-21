@@ -14,6 +14,7 @@ services:
       - BROWSER=None
     ports:
       - 3000:3000
+      - 3111:3111
 
   mock-server:
     image: clue/json-server

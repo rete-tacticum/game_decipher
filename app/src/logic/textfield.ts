@@ -13,7 +13,7 @@ import {
   CHEATS_OPPOSITE,
   ROW_COUNT,
   ROW_LENGTH,
-} from '../_constants/hack';
+} from '../constants';
 
 import { notIsAlpha, longestStreak } from './utils';
 

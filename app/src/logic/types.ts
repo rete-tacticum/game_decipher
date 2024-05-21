@@ -59,17 +59,11 @@ type WordsPlaceResult = {
 
 type GetVocabParams = Omit<Required<WordGenOptions>, 'wordQuantity'>;
 
-type WordRangeOptions = {
-  symbolIdx: number;
-  wordPositions: Record<string, number[]>;
-}
-
 export type {
   CheatParams,
   VocabularyWordLen,
   WordGenOptions,
   WordGenResult,
-  WordRangeOptions,
   TextGenResult,
   WordsPlaceResult,
   CheatsPlaceResult,

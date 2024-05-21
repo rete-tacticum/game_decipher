@@ -12,3 +12,4 @@ COPY . .
 RUN chown -R node:node /opt/app
 USER node
 EXPOSE 3000
+EXPOSE 3111

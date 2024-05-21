@@ -7,10 +7,11 @@ import { useWithSound } from "../../hooks/useWithSound";
 import HackRow from "../HackRow";
 import HackPrompt from "../HackPrompt";
 
-import { ROW_LENGTH } from "../../_constants/hack";
+import { ROW_LENGTH } from "../../constants";
 
 import styles from "./styles.module.scss";
-import soundError from "../../assets/sound/error.mp3";
+
+const soundError = new URL("/sound/error.mp3", import.meta.url);
 
 // @ts-ignore
 const HackField: React.FC = ({
@@ -18,7 +19,7 @@ const HackField: React.FC = ({
   dispatch,
 }: DecipherGameStateDispatch) => {
   const [rows, setRows] = useState<string[][]>([[]]);
-  const [playSoundFail] = useWithSound(soundError);
+  const [playSoundFail] = useWithSound(soundError.href);
 
   useEffect(() => {
     setRows(getChunks(state.textField, ROW_LENGTH));
