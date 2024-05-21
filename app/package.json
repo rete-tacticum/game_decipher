@@ -8,6 +8,10 @@
     "dist",
     "README.md"
   ],
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
+  },
   "repository": {
     "url": "https://github.com/zerthmonk/deciphergame"
   },

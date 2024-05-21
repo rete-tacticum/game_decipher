@@ -16,7 +16,7 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: path.resolve("src", 'components/DecipherGame.tsx'),
+      entry: path.resolve("src", "index.ts"),
       name: 'Blackshell Decipher Game',
       fileName: (format: string) => `blackshell-decipher-game.${format}.js`
     },

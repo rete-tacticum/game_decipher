@@ -18,9 +18,9 @@ start: ## Start development environment
 	@docker-compose up -d --force-recreate
 
 build: ## Build dist package + .tgz package for publishing
-	@rm -rf $(PWD)/dist
-	@mkdir $(PWD)/dist
-	@docker-compose run --rm -v $(PWD)/dist:/opt/app/dist ${APP_NAME} sh -c "pnpm pack --pack-destination /opt/app/dist"
+	@rm -rf $(PWD)/app/dist
+	@mkdir $(PWD)/app/dist
+	@docker-compose run --rm -v $(PWD)/app/dist:/opt/app/dist ${APP_NAME} sh -c "pnpm build"
 
 stop: ## Stop all services and remove orphaned containers
 	@docker-compose down --remove-orphans

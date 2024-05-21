@@ -1,4 +1,4 @@
-name: Node.js Package
+name: publishing decipher game
 
 on:
   push:
@@ -17,8 +17,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup npmrc
-        run: echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -27,10 +26,19 @@ jobs:
           standalone: true
           package_json_file: app/package.json
           dest: ~/setup-pnpm
+
       - name: Config pnpm
         run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+
       - name: Build
         run: |
           pnpm install
-          pnpm pack
-          pnpm publish blackshell-decipher-game-1.0.0.tgz --access restricted --no-git-checks
+          pnpm build
+
+      - name: Setup npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
+
+      - name: Publish with pnpm
+        uses: simenandre/publish-with-pnpm@v1
+        with:
+          npm-auth-token: ${{ secrets.NPM_TOKEN }}
