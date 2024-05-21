@@ -32,7 +32,7 @@ jobs:
           pnpm config set store-dir $PNPM_CACHE_FOLDER
           echo "
             git-checks=false
-            @skaben:registry=https://npm.pkg.github.com
+            registry=https://npm.pkg.github.com
             //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
           " > ~/.npmrc
 
@@ -42,4 +42,8 @@ jobs:
           pnpm build
 
       - name: Publish
-        run: pnpm publish --access=restricted --report-summary
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.NPM_TOKEN }}

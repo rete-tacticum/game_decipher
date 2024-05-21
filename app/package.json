@@ -1,6 +1,5 @@
 {
   "name": "blackshell-decipher-game",
-  "private": true,
   "version": "1.0.0",
   "type": "module",
   "description": "Decipher game for blackshell terminal project",
@@ -9,11 +8,10 @@
     "README.md"
   ],
   "publishConfig": {
-    "main": "lib/index.js",
-    "typings": "lib/index.d.ts"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
-    "url": "https://github.com/zerthmonk/deciphergame"
+    "url": "https://github.com/zerthmonk/deciphergame.git"
   },
   "main": "./dist/blackshell-decipher-game.umd.js",
   "module": "./dist/blackshell-decipher-game.es.js",
