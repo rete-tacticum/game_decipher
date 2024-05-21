@@ -1,9 +1,9 @@
-name: publishing decipher game
+name: [PUBLISH] decipher game
 
 on:
-  push:
-    branches: 
-      - test_build
+  release:
+    types:
+      - published
 
 defaults:
   run:
