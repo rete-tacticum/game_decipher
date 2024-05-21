@@ -1,4 +1,4 @@
-name: [CI] Release It
+name: "[CI] Release It"
 
 on:
   workflow_dispatch:

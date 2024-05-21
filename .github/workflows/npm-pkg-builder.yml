@@ -1,4 +1,4 @@
-name: [PUBLISH] decipher game
+name: "[PUBLISH] decipher game"
 
 on:
   release:
