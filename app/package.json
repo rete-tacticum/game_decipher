@@ -11,6 +11,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "repository": {
+    "type": "git",
     "url": "https://github.com/zerthmonk/deciphergame.git"
   },
   "main": "./dist/blackshell-decipher-game.umd.js",
