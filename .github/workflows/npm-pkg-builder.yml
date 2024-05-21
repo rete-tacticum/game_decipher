@@ -29,12 +29,12 @@ jobs:
 
       - name: Build
         run: |
+          pnpm config set store-dir $PNPM_CACHE_FOLDER
           pnpm install
           pnpm build
 
       - name: Setup pnpm + npmrc for publishing
         run: |
-          pnpm config set store-dir $PNPM_CACHE_FOLDER
           echo "
             git-checks=false
             registry=https://npm.pkg.github.com
