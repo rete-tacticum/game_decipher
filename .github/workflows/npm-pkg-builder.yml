@@ -28,7 +28,8 @@ jobs:
           dest: ~/setup-pnpm
 
       - name: Config pnpm
-        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+        run: |
+          pnpm config set store-dir $PNPM_CACHE_FOLDER
 
       - name: Build
         run: |
@@ -36,7 +37,12 @@ jobs:
           pnpm build
 
       - name: Setup npmrc
-        run: echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
+        run: |
+          echo "
+            git-checks=false
+            @skaben:registry=https://npm.pkg.github.com
+            //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+          " > /etc/npmrc
 
       - name: Publish
-        run: pnpm publish --access restricted --no-git-checks
+        run: pnpm publish --access restricted
