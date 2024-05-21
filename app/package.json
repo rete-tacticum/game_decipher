@@ -4,14 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Decipher game for blackshell terminal project",
-  "keywords": [],
   "files": [
     "dist",
     "README.md"
   ],
-  "publishConfig": {
-    "directory": "dist"
-  },
   "repository": {
     "url": "https://github.com/zerthmonk/deciphergame"
   },
