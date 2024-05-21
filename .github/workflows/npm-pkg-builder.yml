@@ -33,4 +33,4 @@ jobs:
         run: |
           pnpm install
           pnpm pack
-          pnpm publish blackshell-decipher-game-1.0.0.tgz --access restricted --dry-run
+          pnpm publish blackshell-decipher-game-1.0.0.tgz --access restricted --no-git-checks
