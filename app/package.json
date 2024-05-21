@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Decipher game for blackshell terminal project",
+  "packageManager": "pnpm@9.1.2",
   "keywords": [],
   "files": [
     "dist",

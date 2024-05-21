@@ -10,32 +10,19 @@ defaults:
     working-directory: app
 
 jobs:
-  release:
+  pnpm-setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v3
+      - name: pnpm setup
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
+          run_install: false
+          standalone: true
           package_json_file: app/package.json
-
-      - name: Use Node 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: https://npm.pkg.github.com/
-          cache: pnpm
-          path: app
-
-      - name: Install dependencies
-        run: pnpm install
-
+          dest: ~/setup-pnpm
       - name: Build
-        run: pnpm build
-
-      - uses: simenandre/publish-with-pnpm@v1
-        with:
-          path: app
-          npm-auth-token: ${{ secrets.NPM_TOKEN }}
+        run: |
+          pnpm install && pnpm build
