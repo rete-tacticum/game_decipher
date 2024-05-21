@@ -27,22 +27,19 @@ jobs:
           package_json_file: app/package.json
           dest: ~/setup-pnpm
 
-      - name: Config pnpm
+      - name: Setup pnpm + npmrc
         run: |
           pnpm config set store-dir $PNPM_CACHE_FOLDER
+          echo "
+            git-checks=false
+            @skaben:registry=https://npm.pkg.github.com
+            //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+          " > ~/.npmrc
 
       - name: Build
         run: |
           pnpm install
           pnpm build
 
-      - name: Setup npmrc
-        run: |
-          echo "
-            git-checks=false
-            @skaben:registry=https://npm.pkg.github.com
-            //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
-          " > /etc/npmrc
-
       - name: Publish
-        run: pnpm publish --access restricted
+        run: pnpm publish --access=restricted --report-summary
