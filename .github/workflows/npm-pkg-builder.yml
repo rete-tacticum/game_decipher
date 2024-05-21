@@ -1,7 +1,9 @@
 name: Node.js Package
 
 on:
-  push: [test_build]
+  push:
+    branches: 
+      - test_build
 
 jobs:
   pnpm-publish:
