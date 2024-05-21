@@ -41,7 +41,7 @@ jobs:
           pnpm build
 
       - name: Publish
-        run: npm publish --provenance --access public --no-git-checks
+        run: npm publish --provenance --access public --no-git-checks --scope=@zerthmonk
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

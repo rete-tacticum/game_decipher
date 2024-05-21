@@ -1,5 +1,5 @@
 {
-  "name": "blackshell-decipher-game",
+  "name": "@zerthmonk/blackshell-decipher-game",
   "version": "1.0.0",
   "type": "module",
   "description": "Decipher game for blackshell terminal project",
