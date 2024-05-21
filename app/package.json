@@ -9,6 +9,9 @@
     "dist",
     "README.md"
   ],
+  "publishConfig": {
+    "directory": "dist"
+  },
   "repository": {
     "url": "https://github.com/zerthmonk/deciphergame"
   },

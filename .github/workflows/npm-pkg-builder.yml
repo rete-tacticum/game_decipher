@@ -8,6 +8,8 @@ on:
 defaults:
   run:
     working-directory: app
+env:
+  PNPM_CACHE_FOLDER: .pnpm-store
 
 jobs:
   pnpm-setup:
@@ -15,7 +17,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: pnpm setup
+      - name: Setup npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
+      - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9
@@ -23,10 +27,18 @@ jobs:
           standalone: true
           package_json_file: app/package.json
           dest: ~/setup-pnpm
+      - name: Config pnpm
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
       - name: Build
         run: |
           pnpm install
           pnpm build
-      - name: Publish
-        run: |
-          pnpm publish
+      - name: create and publish versions
+        uses: changesets/action@v1
+        with:
+          version: pnpm ci:version
+          commit: "chore: update versions"
+          title: "chore: update versions"
+          publish: pnpm ci:publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
