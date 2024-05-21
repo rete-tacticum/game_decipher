@@ -27,7 +27,12 @@ jobs:
           package_json_file: app/package.json
           dest: ~/setup-pnpm
 
-      - name: Setup pnpm + npmrc
+      - name: Build
+        run: |
+          pnpm install
+          pnpm build
+
+      - name: Setup pnpm + npmrc for publishing
         run: |
           pnpm config set store-dir $PNPM_CACHE_FOLDER
           echo "
@@ -35,11 +40,6 @@ jobs:
             registry=https://npm.pkg.github.com
             //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
           " > ~/.npmrc
-
-      - name: Build
-        run: |
-          pnpm install
-          pnpm build
 
       - name: Publish
         run: npm publish --access public
