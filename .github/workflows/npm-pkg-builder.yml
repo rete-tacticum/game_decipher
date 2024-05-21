@@ -25,4 +25,8 @@ jobs:
           dest: ~/setup-pnpm
       - name: Build
         run: |
-          pnpm install && pnpm build
+          pnpm install
+          pnpm build
+      - name: Publish
+        run: |
+          pnpm publish

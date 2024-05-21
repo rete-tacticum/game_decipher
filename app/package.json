@@ -9,6 +9,9 @@
     "dist",
     "README.md"
   ],
+  "repository": {
+    "url": "https://github.com/zerthmonk/deciphergame"
+  },
   "main": "./dist/blackshell-decipher-game.umd.js",
   "module": "./dist/blackshell-decipher-game.es.js",
   "exports": {
