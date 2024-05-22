@@ -14,14 +14,6 @@ services:
       - BROWSER=None
     ports:
       - 3000:3000
-      - 3111:3111
-
-  mock-server:
-    image: clue/json-server
-    volumes:
-      - ./mock/db.json:/data/db.json
-    ports:
-      - 10000:80
 
 volumes:
   node_volume: {}
