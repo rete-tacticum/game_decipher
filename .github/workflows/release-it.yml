@@ -61,3 +61,6 @@ jobs:
         release-it --config release-it.json --ci --increment=$increment
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_PAT }}
+
+permissions:
+  contents: write
