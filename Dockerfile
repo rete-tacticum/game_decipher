@@ -6,6 +6,7 @@ FROM base AS dev
 ENV PATH /opt/app/node_modules/.bin:$PATH
 
 WORKDIR /opt/app
+COPY ./app/.npmrc /opt/app/
 COPY ./app/package.json /opt/app/
 RUN pnpm install
 COPY . .
