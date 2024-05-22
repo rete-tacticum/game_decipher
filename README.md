@@ -1,9 +1,16 @@
-### React + Vite
+### Decipher Game BlackShell module
 
-- React
-- Vite
-- Typescript
-- ESlint
-- Docker
+Игровой модуль в стиле загадки в терминале Fallout3.
+Для использования в рамках Blackshell.
 
-separated node_modules dir, Makefile for easy managing, mock db server
+
+```
+import DecipherGame from 'blackshell-decipher-game';
+
+DecipherGame({
+  difficulty: 1,
+  language: "eng",
+  timeout: 0,
+  tries: 5
+});
+```
