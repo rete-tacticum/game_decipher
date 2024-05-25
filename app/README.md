@@ -2,7 +2,8 @@
 
 
 ```
-import DecipherGame from 'blackshell-decipher-game';
+import DecipherGame from '@rete-tacticum/game-decipher';
+import '@rete-tacticum/game-decipher/dist/style.css";
 
 DecipherGame({
   difficulty: 1,

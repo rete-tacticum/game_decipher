@@ -1,5 +1,5 @@
 {
-  "name": "@zerthmonk/blackshell-decipher-game",
+  "name": "@rete-tacticum/game-decipher",
   "version": "1.0.1",
   "type": "module",
   "description": "Decipher game for blackshell terminal project",
@@ -11,14 +11,18 @@
     "registry": "https://npm.pkg.github.com"
   },
   "repository": {
-    "url": "git+https://github.com/zerthmonk/deciphergame.git"
+    "url": "git+https://github.com/rete-tacticum/game_decipher.git"
   },
-  "main": "./dist/blackshell-decipher-game.umd.js",
-  "module": "./dist/blackshell-decipher-game.es.js",
+  "main": "./dist/game-decipher.umd.cjs",
+  "module": "./dist/game-decipher.js",
   "exports": {
     ".": {
-      "import": "./dist/blackshell-decipher-game.es.js",
-      "require": "./dist/blackshell-decipher-game.umd.js"
+      "import": "./dist/game-decipher.js",
+      "require": "./dist/game-decipher.umd.cjs"
+    },
+    "./dist/*.css": {
+      "import": "./dist/*.css",
+      "require": "./dist/*.css"
     }
   },
   "scripts": {

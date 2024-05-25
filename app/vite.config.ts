@@ -16,14 +16,13 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: path.resolve("src", "index.ts"),
+      entry: path.resolve("lib", "index.ts"),
       name: 'Blackshell Decipher Game',
-      fileName: (format: string) => `blackshell-decipher-game.${format}.js`
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
       input: {
-        main: resolve(__dirname, "src", "index.ts"),
+        main: resolve(__dirname, "lib", "index.ts"),
       },
       output: {
         globals: {
@@ -31,7 +30,6 @@ export default defineConfig({
           'react-dom': 'ReactDOM',
         }
       },
-      sourcemap: 'inline',
     }
   },
 });

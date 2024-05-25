@@ -16,7 +16,7 @@
     "baseUrl": "./",
     /* path aliases */
     "paths": {
-      "react-vite-library": ["src/index.ts"]
+      "react-vite-library": ["lib/index.ts"]
     },
 
     /* Linting */
@@ -25,7 +25,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "lib/index.ts"],
   "types": ["node", "jest"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
