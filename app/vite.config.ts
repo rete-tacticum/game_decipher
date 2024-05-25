@@ -20,16 +20,16 @@ export default defineConfig({
       name: 'Blackshell Decipher Game',
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      // external: ['react', 'react-dom'],
       input: {
         main: resolve(__dirname, "lib", "index.ts"),
       },
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-        }
-      },
+      // output: {
+      //   globals: {
+      //     react: 'React',
+      //     'react-dom': 'ReactDOM',
+      //   }
+      // },
     }
   },
 });
