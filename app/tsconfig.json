@@ -14,10 +14,6 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "./",
-    /* path aliases */
-    "paths": {
-      "react-vite-library": ["lib/index.ts"]
-    },
 
     /* Linting */
     "strict": true,
@@ -25,7 +21,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "lib/index.ts"],
+  "include": ["src", "lib"],
   "types": ["node", "jest"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

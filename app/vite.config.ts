@@ -16,20 +16,13 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: path.resolve("lib", "index.ts"),
+      entry: path.resolve("lib", "index.tsx"),
       name: 'Blackshell Decipher Game',
     },
     rollupOptions: {
-      // external: ['react', 'react-dom'],
       input: {
-        main: resolve(__dirname, "lib", "index.ts"),
+        main: resolve(__dirname, "lib", "index.tsx"),
       },
-      // output: {
-      //   globals: {
-      //     react: 'React',
-      //     'react-dom': 'ReactDOM',
-      //   }
-      // },
     }
   },
 });
