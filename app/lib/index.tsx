@@ -7,6 +7,5 @@ function renderDecipherGame(element: HTMLElement, props: ConfigParams) {
   root.render(<DecipherGame {...props} />);
 }
 
-export { DecipherGame, renderDecipherGame };
-export default DecipherGame;
+export default renderDecipherGame;
 export type { ConfigParams };
